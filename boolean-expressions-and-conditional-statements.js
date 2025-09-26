@@ -28,6 +28,8 @@ const readline = require('readline-sync');
 
 const hasTorch = true;
 const hasMap = false;
+const hasCompass = true;
+const seesDragon = true;
 
 console.log("You see two paths: one leads to the mountains, the other to the village.");
 const choice = readline.question("Do you go to the 'mountains' or the 'village'?");
@@ -38,8 +40,19 @@ if (choice === "mountains" && hasTorch) {
   console.log("It's too dark to proceed. You decide to turn back.");
 } else if (choice === "village" || hasMap) {
   console.log("You find your way to the village.");
+} else if (choice === "village" && hasCompass) {
+  console.log("Use your compass to head east toward the village inn to stay for tonight.");
 } else {
   console.log("You get lost and wander aimlessly.");
+}
+
+const hasSword = readline.question("Do you have your sword?");
+if (choice === "mountains" && hasSword === "yes" && seesDragon) {
+  console.log("You slay the dragon and safely navigate to the top of the mountain!");
+} else if (choice === "village" && hasSword === "yes" && seesDragon) {
+  console.log("Good! You may need it to defend the village.");
+} else {
+  console.log("In that case, be sure to avoid the dragon.");
 }
 
 /* 
